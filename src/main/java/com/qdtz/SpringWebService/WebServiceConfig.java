@@ -1,4 +1,4 @@
-package com.github.lincolnluiz.SpringWebService;
+package com.qdtz.SpringWebService;
 
 import javax.xml.ws.Endpoint;
 
@@ -11,8 +11,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.github.lincolnluiz.SpringWebService.interceptor.MyIntercepter;
-import com.github.lincolnluiz.SpringWebService.service.TestOracleService;
+import com.qdtz.SpringWebService.interceptor.MyIntercepter;
+import com.qdtz.SpringWebService.service.TestOracleService;
 
 @Configuration
 @EnableAutoConfiguration
