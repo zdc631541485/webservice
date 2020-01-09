@@ -1,0 +1,17 @@
+server:
+    port: 8080
+
+spring:
+    datasource:
+        driver-class-name: oracle.jdbc.driver.OracleDriver
+        url: jdbc:oracle:thin:@192.168.88.101:1521/orcl
+        username: znwlxg
+        password: znwlxg
+
+#mapper.xml path
+mybatis:
+    mapperLocations: classpath*:com/qdtz/SpringWebService/mapper/Impl/*.xml
+
+logging:
+    level:
+        com.qdtz.SpringWebService.mapper: debug

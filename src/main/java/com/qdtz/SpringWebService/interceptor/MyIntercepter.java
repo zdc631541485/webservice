@@ -8,20 +8,24 @@ import org.apache.cxf.interceptor.Fault;
 import org.apache.cxf.phase.AbstractPhaseInterceptor;
 import org.apache.cxf.phase.Phase;
 import org.apache.cxf.transport.http.AbstractHTTPDestination;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.qdtz.SpringWebService.WebServiceConfig;
 import com.qdtz.SpringWebService.mapper.TestOracleMapper;
 
 @Component
 public class MyIntercepter extends AbstractPhaseInterceptor<SoapMessage> {
 	
+    private static final Logger LOG = LoggerFactory.getLogger(WebServiceConfig.class);
+    
 	@Autowired
     private TestOracleMapper testOracleMapper;
 	
 	public MyIntercepter() {
 		super(Phase.PRE_INVOKE);
-		
 	}
 	
 	@Override
@@ -40,7 +44,7 @@ public class MyIntercepter extends AbstractPhaseInterceptor<SoapMessage> {
 			boolean ishave = conunt == 0?false:true;
 			return ishave;
 		}catch (Exception e) {
-			e.printStackTrace();
+		    LOG.error("The IP check error!!!");
 			return false;
 		}
 

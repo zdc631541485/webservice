@@ -5,6 +5,8 @@ import javax.xml.ws.Endpoint;
 import org.apache.cxf.Bus;
 import org.apache.cxf.jaxws.EndpointImpl;
 import org.apache.cxf.transport.servlet.CXFServlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -18,6 +20,8 @@ import com.qdtz.SpringWebService.service.TestOracleService;
 @EnableAutoConfiguration
 public class WebServiceConfig {
 	
+    private static final Logger LOG = LoggerFactory.getLogger(WebServiceConfig.class);
+    
 	@Autowired
     private Bus bus;
 	
@@ -45,6 +49,7 @@ public class WebServiceConfig {
         EndpointImpl endpoint = new EndpointImpl(bus, testOracleService);
         endpoint.publish("/znsjInterf");
         endpoint.getInInterceptors().add(myIntercepter);
+        LOG.info("webservice publish success!!!");
         return endpoint;
     }
     
