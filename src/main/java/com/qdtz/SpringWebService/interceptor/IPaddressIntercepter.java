@@ -17,14 +17,14 @@ import com.qdtz.SpringWebService.config.WebServiceConfig;
 import com.qdtz.SpringWebService.mapper.master.TestOracleMapper;
 
 @Component
-public class MyIntercepter extends AbstractPhaseInterceptor<SoapMessage> {
+public class IPaddressIntercepter extends AbstractPhaseInterceptor<SoapMessage> {
 	
     private static final Logger LOG = LoggerFactory.getLogger(WebServiceConfig.class);
     
 	@Autowired
     private TestOracleMapper testOracleMapper;
 	
-	public MyIntercepter() {
+	public IPaddressIntercepter() {
 		super(Phase.PRE_INVOKE);
 	}
 	
@@ -33,9 +33,9 @@ public class MyIntercepter extends AbstractPhaseInterceptor<SoapMessage> {
 		HttpServletRequest request = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
 		String ipAddress = getIP(request);
 		boolean b = ishave(ipAddress);
-		if (!b) {
+		if (!b)
 			throw new Fault(new IllegalAccessException("the client is not allowed!(禁止访问)"));
-		}
+		LOG.info("The client ip is allowed!!");
 	}
 	
 	private boolean ishave(String ip) {

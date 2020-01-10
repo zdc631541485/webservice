@@ -13,7 +13,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.qdtz.SpringWebService.interceptor.MyIntercepter;
+import com.qdtz.SpringWebService.interceptor.IPaddressIntercepter;
 import com.qdtz.SpringWebService.service.TestOracleService;
 
 @Configuration
@@ -29,7 +29,7 @@ public class WebServiceConfig {
 	private TestOracleService testOracleService;
 	
 	@Autowired
-	private MyIntercepter myIntercepter;
+	private IPaddressIntercepter iPaddressIntercepter;
 	
 	/**
 	* @Title: dispatcherServlet 
@@ -48,7 +48,7 @@ public class WebServiceConfig {
     public Endpoint endpoint() {
         EndpointImpl endpoint = new EndpointImpl(bus, testOracleService);
         endpoint.publish("/znsjInterf");
-        endpoint.getInInterceptors().add(myIntercepter);
+        endpoint.getInInterceptors().add(iPaddressIntercepter);
         LOG.info("webservice publish success!!!");
         return endpoint;
     }
