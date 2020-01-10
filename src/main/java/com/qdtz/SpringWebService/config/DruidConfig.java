@@ -1,4 +1,4 @@
-package com.qdtz.SpringWebService;
+package com.qdtz.SpringWebService.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -20,8 +20,8 @@ public class DruidConfig {
     @Bean
     public ServletRegistrationBean druidServlet() {// 主要实现web监控的配置处理
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(),"/druid/*");// 表示进行druid监控的配置处理操作
-        //servletRegistrationBean.addInitParameter("allow","127.0.0.1,192.168.202.233");//白名单
-        //servletRegistrationBean.addInitParameter("deny", "192.168.202.234");//黑名单
+        servletRegistrationBean.addInitParameter("allow","127.0.1.1,192.168.88.240");//白名单
+        servletRegistrationBean.addInitParameter("deny", "192.168.88.24");//黑名单
         servletRegistrationBean.addInitParameter("loginUsername", "root");// 用户名
         servletRegistrationBean.addInitParameter("loginPassword", "root");// 密码
         servletRegistrationBean.addInitParameter("resetEnable", "false");// 是否可以重置数据源
@@ -38,9 +38,9 @@ public class DruidConfig {
         return filterRegistrationBean;
     }
 
-    @Bean
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource druidDataSource() {
-        return new DruidDataSource();
-    }
+//    @Bean
+//    @ConfigurationProperties(prefix = "spring.datasource")
+//    public DataSource druidDataSource() {
+//        return new DruidDataSource();
+//    }
 }

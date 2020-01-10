@@ -1,4 +1,4 @@
-package com.qdtz.SpringWebService.mapper;
+package com.qdtz.SpringWebService.mapper.master;
 
 import org.apache.ibatis.annotations.Mapper;
 

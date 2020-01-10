@@ -1,4 +1,4 @@
-package com.qdtz.SpringWebService;
+package com.qdtz.SpringWebService.config;
 
 import java.io.IOException;
 

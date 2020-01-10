@@ -1,4 +1,4 @@
-package com.qdtz.SpringWebService;
+package com.qdtz.SpringWebService.config;
 
 import javax.xml.ws.Endpoint;
 
@@ -40,7 +40,7 @@ public class WebServiceConfig {
 	* @version v1.0.0
 	 */
 	@Bean
-    public ServletRegistrationBean dispatcherServlet() {
+    public ServletRegistrationBean dispatcherServletWeb() {
         return new ServletRegistrationBean(new CXFServlet(), "/webservice/*");
     }
  

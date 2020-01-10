@@ -6,4 +6,6 @@ import javax.jws.WebService;
 public interface TestOracleService {
     
     Integer getUserCount();
+    
+    Integer getSlaveUserCount();
 }

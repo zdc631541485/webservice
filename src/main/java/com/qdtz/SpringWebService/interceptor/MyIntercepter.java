@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.qdtz.SpringWebService.WebServiceConfig;
-import com.qdtz.SpringWebService.mapper.TestOracleMapper;
+import com.qdtz.SpringWebService.config.WebServiceConfig;
+import com.qdtz.SpringWebService.mapper.master.TestOracleMapper;
 
 @Component
 public class MyIntercepter extends AbstractPhaseInterceptor<SoapMessage> {
@@ -44,7 +44,7 @@ public class MyIntercepter extends AbstractPhaseInterceptor<SoapMessage> {
 			boolean ishave = conunt == 0?false:true;
 			return ishave;
 		}catch (Exception e) {
-		    LOG.error("The IP check error!!!");
+		    LOG.error("The IP check error:"+e.getMessage());
 			return false;
 		}
 

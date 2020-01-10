@@ -5,7 +5,8 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.qdtz.SpringWebService.mapper.TestOracleMapper;
+import com.qdtz.SpringWebService.mapper.master.TestOracleMapper;
+import com.qdtz.SpringWebService.mapper.slave.TestSlaveMapper;
 import com.qdtz.SpringWebService.service.TestOracleService;
 
 /**
@@ -25,10 +26,18 @@ public class TestOracleServiceImpl implements TestOracleService {
 
     @Autowired
     private TestOracleMapper testOracleMapper;
+  
+    @Autowired
+    private TestSlaveMapper testSlaveMapper;
     
     @Override
     public Integer getUserCount() {
         return testOracleMapper.getUserCount();
+    }
+
+    @Override
+    public Integer getSlaveUserCount() {
+        return testSlaveMapper.getSlaveUserCount();
     }
 
 }
