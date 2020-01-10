@@ -3,10 +3,15 @@ server:
 
 spring:
     datasource:
-        driver-class-name: oracle.jdbc.driver.OracleDriver
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: oracle.jdbc.OracleDriver
         url: jdbc:oracle:thin:@192.168.88.101:1521/orcl
         username: znwlxg
         password: znwlxg
+        druid.initial-size: 5
+        druid.min-idle: 5
+        druid.max-active: 20
+        druid.max-wait: 60000
 
 #mapper.xml path
 mybatis:
@@ -15,3 +20,14 @@ mybatis:
 logging:
     level:
         com.qdtz.SpringWebService.mapper: debug
+        
+#配置静态资源前后缀
+spring.thymeleaf:
+     prefix: classpath:/templates/
+     suffix: .html
+     mode: HTML5
+     encoding: UTF-8
+     cache: false
+
+
+  
