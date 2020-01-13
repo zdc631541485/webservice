@@ -4,6 +4,8 @@ import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.qdtz.SpringWebService.mapper.master.TestOracleMapper;
 import com.qdtz.SpringWebService.mapper.slave.TestSlaveMapper;
@@ -18,7 +20,7 @@ import com.qdtz.SpringWebService.service.TestOracleService;
  * @author: ZDC
  * @date: 2020年1月9日 上午11:27:17
  */
-@WebService(serviceName = "UserService", 
+@WebService(serviceName = "UserService",
         targetNamespace = "http://service.demo.example.com")
 @Component
 public class TestOracleServiceImpl implements TestOracleService {
@@ -38,6 +40,22 @@ public class TestOracleServiceImpl implements TestOracleService {
     @Override
     public Integer getSlaveUserCount() {
         return testSlaveMapper.getSlaveUserCount();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Integer updateUserLastLogin() {
+        int rows = testOracleMapper.updateUserLastLogin();
+        //TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        int t = 1/0;
+        return rows;
+    }
+
+    @Override
+    public Integer updateSlaveUserLastLogin() {
+        int rows = testSlaveMapper.updateSlaveUserLastLogin();
+        int t =1/0;
+        return rows;
     }
 
 }

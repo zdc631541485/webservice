@@ -32,5 +32,18 @@ public class HelloController {
         
         return testOracleService.getUserCount();
     }
-
+    
+    @ResponseBody
+    @GetMapping(value="/updateUserLastLogin")
+    public Integer updateUserLastLogin() {
+        
+        return testOracleService.updateUserLastLogin();
+    }
+    
+    @ResponseBody
+    @GetMapping(value="/updateSlaveUserLastLogin")
+    public Integer updateSlaveUserLastLogin() {
+        
+        return testOracleService.updateSlaveUserLastLogin();
+    }
 }

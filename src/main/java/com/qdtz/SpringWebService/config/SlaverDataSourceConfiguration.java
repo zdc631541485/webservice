@@ -37,7 +37,7 @@ public class SlaverDataSourceConfiguration {
     }
  
     @Bean(name = "slaveTransactionManager")
-    @Primary
+    //@Primary
     public DataSourceTransactionManager transactionManager(@Qualifier("slaveDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }

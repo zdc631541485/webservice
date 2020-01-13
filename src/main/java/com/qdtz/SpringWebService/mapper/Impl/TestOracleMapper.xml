@@ -4,4 +4,7 @@
     <select id="getUserCount" resultType="java.lang.Integer">
         select count(1) from sm_user
     </select>
+    <update id="updateUserLastLogin">
+    	update sm_user set LASTLOGIN=sysdate where account='admin'
+    </update>
 </mapper>

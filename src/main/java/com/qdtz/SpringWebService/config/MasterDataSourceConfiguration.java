@@ -36,6 +36,7 @@ public class MasterDataSourceConfiguration {
     }
  
     @Bean(name = "masterTransactionManager")
+    @Primary
     public DataSourceTransactionManager transactionManager(@Qualifier("masterDataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }

@@ -6,7 +6,7 @@ spring:
     druid:
       masterDB:
         driverClassName: oracle.jdbc.OracleDriver
-        url: jdbc:oracle:thin:@192.168.88.240:1521/orcl
+        url: jdbc:oracle:thin:@192.168.3.175:1521/orcl
         username: znwlxg
         password: znwlxg
         initialSize: 2

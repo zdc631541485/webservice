@@ -8,4 +8,8 @@ public interface TestOracleService {
     Integer getUserCount();
     
     Integer getSlaveUserCount();
+
+    Integer updateUserLastLogin();
+
+    Integer updateSlaveUserLastLogin();
 }
