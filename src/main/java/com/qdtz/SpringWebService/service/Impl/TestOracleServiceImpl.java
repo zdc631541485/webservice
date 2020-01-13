@@ -43,7 +43,7 @@ public class TestOracleServiceImpl implements TestOracleService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class,transactionManager="masterTransactionManager")
     public Integer updateUserLastLogin() {
         int rows = testOracleMapper.updateUserLastLogin();
         //TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -52,9 +52,11 @@ public class TestOracleServiceImpl implements TestOracleService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class,transactionManager="slaveTransactionManager")
     public Integer updateSlaveUserLastLogin() {
         int rows = testSlaveMapper.updateSlaveUserLastLogin();
-        int t =1/0;
+        //TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        int t = 1/0;
         return rows;
     }
 
