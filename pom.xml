@@ -10,7 +10,7 @@
 
 	<name>SpringBoot-WebService</name>
 	<description></description>
-
+	<!-- 指定该项目是一个springboot项目 -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -65,6 +65,12 @@
 		    <groupId>cn.easyproject</groupId>
 			<artifactId>orai18n</artifactId>
 			<version>12.1.0.2.0</version>
+		</dependency>
+		<!-- 引入测试支持 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-test</artifactId>
+		    <scope>test</scope>
 		</dependency>
 	</dependencies>
 

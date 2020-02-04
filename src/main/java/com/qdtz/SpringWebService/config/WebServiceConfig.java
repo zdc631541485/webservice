@@ -20,7 +20,7 @@ import com.qdtz.SpringWebService.service.TestOracleService;
 @EnableAutoConfiguration
 public class WebServiceConfig {
 	
-    private static final Logger LOG = LoggerFactory.getLogger(WebServiceConfig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WebServiceConfig.class);
     
 	@Autowired
     private Bus bus;
@@ -49,7 +49,7 @@ public class WebServiceConfig {
         EndpointImpl endpoint = new EndpointImpl(bus, testOracleService);
         endpoint.publish("/znsjInterf");
         endpoint.getInInterceptors().add(iPaddressIntercepter);
-        LOG.info("webservice publish success!!!");
+        LOGGER.info("webservice publish success!!!");
         return endpoint;
     }
     

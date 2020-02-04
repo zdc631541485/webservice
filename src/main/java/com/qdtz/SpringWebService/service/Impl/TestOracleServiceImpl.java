@@ -5,8 +5,6 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
-
 import com.qdtz.SpringWebService.mapper.master.TestOracleMapper;
 import com.qdtz.SpringWebService.mapper.slave.TestSlaveMapper;
 import com.qdtz.SpringWebService.service.TestOracleService;
@@ -46,7 +44,6 @@ public class TestOracleServiceImpl implements TestOracleService {
     @Transactional(rollbackFor = Exception.class,transactionManager="masterTransactionManager")
     public Integer updateUserLastLogin() {
         int rows = testOracleMapper.updateUserLastLogin();
-        //TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         int t = 1/0;
         return rows;
     }
@@ -55,7 +52,6 @@ public class TestOracleServiceImpl implements TestOracleService {
     @Transactional(rollbackFor = Exception.class,transactionManager="slaveTransactionManager")
     public Integer updateSlaveUserLastLogin() {
         int rows = testSlaveMapper.updateSlaveUserLastLogin();
-        //TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
         int t = 1/0;
         return rows;
     }
