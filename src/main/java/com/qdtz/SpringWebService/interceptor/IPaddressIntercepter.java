@@ -32,17 +32,17 @@ public class IPaddressIntercepter extends AbstractPhaseInterceptor<SoapMessage> 
 	public void handleMessage(SoapMessage message) throws Fault {
 		HttpServletRequest request = (HttpServletRequest) message.get(AbstractHTTPDestination.HTTP_REQUEST);
 		String ipAddress = getIP(request);
-		boolean b = ishave(ipAddress);
+		boolean b = isHaveIp(ipAddress);
 		if (!b)
-			throw new Fault(new IllegalAccessException("the client is not allowed!(禁止访问)"));
-		LOG.info("The client ip is allowed!!");
+			throw new Fault(new IllegalAccessException("The client is not allowed!(禁止访问)"));
+		LOG.info("The client ip["+ipAddress+"] is allowed !!!");
 	}
 	
-	private boolean ishave(String ip) {
+	private boolean isHaveIp(String ip) {
 		try {
 			int conunt = testOracleMapper.getUserCount();
-			boolean ishave = conunt == 0?false:true;
-			return ishave;
+			boolean isHaveTheIp = (conunt == 0)?false:true;
+			return isHaveTheIp;
 		}catch (Exception e) {
 		    LOG.error("The IP check error:"+e.getMessage());
 			return false;
