@@ -19,6 +19,11 @@ public class HelloController {
         return "hello spring boot";
     }
     
+    @GetMapping("/toTestHtml")
+    public String testHtml(){
+        return "test";
+    }
+    
     @ResponseBody
     @GetMapping(value="/userCount")
     public Integer getUserCount() {

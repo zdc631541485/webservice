@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan(basePackages= {"com.qdtz.SpringWebService.mapper"})
-public class SpringBootWebServiceApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootWebServiceApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }

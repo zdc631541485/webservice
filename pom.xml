@@ -25,22 +25,25 @@
 	</properties>
 
 	<dependencies>
+		<!-- web启动包 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!--cxf启动包  -->
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-spring-boot-starter-jaxws</artifactId>
 			<version>3.1.12</version>
 		</dependency>
+		<!-- oracle驱动包 -->
 		<dependency>
             <groupId>com.oracle.ojdbc</groupId>
             <artifactId>ojdbc8</artifactId>
             <scope>runtime</scope>
             <version>19.3.0.0</version>
         </dependency>
+        <!-- mybatis启动包 -->
          <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
@@ -57,6 +60,7 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-thymeleaf</artifactId>
 	    </dependency>
+	    <!-- Mybatis操作oracle数据库不支持的字符集 -->
 	    <dependency>
 		    <groupId>cn.easyproject</groupId>
 			<artifactId>orai18n</artifactId>
@@ -71,17 +75,6 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.yml</include>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
 	</build>
 
 
