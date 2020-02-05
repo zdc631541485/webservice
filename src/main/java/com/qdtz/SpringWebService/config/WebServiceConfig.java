@@ -1,5 +1,7 @@
 package com.qdtz.SpringWebService.config;
 
+import java.net.UnknownHostException;
+
 import javax.xml.ws.Endpoint;
 
 import org.apache.cxf.Bus;
@@ -21,6 +23,10 @@ import com.qdtz.SpringWebService.service.TestOracleService;
 public class WebServiceConfig {
 	
     private static final Logger LOGGER = LoggerFactory.getLogger(WebServiceConfig.class);
+    //服务注册地址
+    protected  String registeredAddress = "/webservice";
+    //服务发布地址
+    protected  String publishAddress = "/interfaces";
     
 	@Autowired
     private Bus bus;
@@ -41,13 +47,13 @@ public class WebServiceConfig {
 	 */
 	@Bean
     public ServletRegistrationBean dispatcherServletWeb() {
-        return new ServletRegistrationBean(new CXFServlet(), "/webservice/*");
+        return new ServletRegistrationBean(new CXFServlet(), registeredAddress+"/*");
     }
  
     @Bean
-    public Endpoint endpoint() {
+    public Endpoint endpoint() throws UnknownHostException {
         EndpointImpl endpoint = new EndpointImpl(bus, testOracleService);
-        endpoint.publish("/znsjInterf");
+        endpoint.publish(publishAddress);
         endpoint.getInInterceptors().add(iPaddressIntercepter);
         LOGGER.info("webservice publish success!!!");
         return endpoint;
