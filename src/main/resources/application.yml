@@ -32,8 +32,6 @@ spring:
         testOnReturn: false
         maxWait: 6000
 
-#spring.datasource.filters : stat
-#mapper.xml path
 mybatis:
     mapperLocations: classpath*:com/qdtz/SpringWebService/mapper/Impl/*.xml
 
@@ -41,13 +39,6 @@ logging:
     level:
         com.qdtz.SpringWebService.mapper: TRACE
         
-#配置静态资源前后缀
-spring.thymeleaf:
-     prefix: classpath:/templates/
-     suffix: .html
-     mode: HTML5
-     encoding: UTF-8
-     cache: false
 
 
   
