@@ -72,6 +72,11 @@
 		    <artifactId>spring-boot-starter-test</artifactId>
 		    <scope>test</scope>
 		</dependency>
+		<!-- aop -->
+		<dependency>
+	        <groupId>org.springframework</groupId>
+	        <artifactId>spring-aspects</artifactId>
+    	</dependency>
 	</dependencies>
 
 	<build>

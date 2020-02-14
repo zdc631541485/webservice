@@ -3,6 +3,7 @@ package com.qdtz.SpringWebService.service.Impl;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import com.qdtz.SpringWebService.mapper.master.TestOracleMapper;
@@ -52,5 +53,11 @@ public class TestOracleServiceImpl implements TestOracleService {
         int t = 1/0;
         return rows;
     }
+    @Async
+	@Override
+	public void asynJob() {
+		System.out.println("异步的线程："+Thread.currentThread().getName());
+		
+	}
 
 }

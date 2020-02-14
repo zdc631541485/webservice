@@ -12,4 +12,7 @@ public interface TestOracleService {
     Integer updateUserLastLogin();
 
     Integer updateSlaveUserLastLogin();
+    
+    void asynJob();
+    
 }

@@ -10,7 +10,6 @@ import org.apache.cxf.transport.servlet.CXFServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +17,8 @@ import org.springframework.context.annotation.Configuration;
 import com.qdtz.SpringWebService.interceptor.IPaddressIntercepter;
 import com.qdtz.SpringWebService.service.TestOracleService;
 
+
 @Configuration
-@EnableAutoConfiguration
 public class WebServiceConfig {
 	
     private static final Logger LOGGER = LoggerFactory.getLogger(WebServiceConfig.class);
