@@ -9,12 +9,15 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -44,7 +47,13 @@ public class MyAop {
         logger.info("before success");
     }
 	
-	@AfterReturning("point()")
+	@After("point()")
+    public void after(JoinPoint joinPoint) {
+		//int i = 1/0;
+        logger.info("after success");
+    }
+	
+	//@AfterReturning("point()")
     public void before01(JoinPoint joinPoint) {
         logger.info("before success");
     }
@@ -52,16 +61,17 @@ public class MyAop {
 	@SuppressWarnings("rawtypes")
 	@AfterReturning(value = "point()", returning = "result")
     public void after(JoinPoint joinPoint, Object result) {
-        String methodName = joinPoint.getSignature().getName(); //先获取目标方法的签名，再获取目标方法的名
-        Object[] args = joinPoint.getArgs();  //获取目标方法的入参
-        Car car = null;
-        for (Object object : args) {
-        	if(object instanceof Car)
-            	car  = (Car) object;
-		}
-        logger.info("方法名: " + methodName + " ,参数列表:  " + Arrays.asList(args));
-        logger.info("参数对象Car: "+car.toString());
-        try {
+		try {
+			String methodName = joinPoint.getSignature().getName(); //先获取目标方法的签名，再获取目标方法的名
+	        Object[] args = joinPoint.getArgs();  //获取目标方法的入参
+	        Car car = null;
+	        for (Object object : args) {
+	        	if(object instanceof Car)
+	            	car  = (Car) object;
+			}
+	        logger.info("方法名: " + methodName + " ,参数列表:  " + Arrays.asList(args));
+	        logger.info("参数对象Car: "+car.toString());
+        
         	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         	HttpSession session = request.getSession();
         	Object sessionMsg = session.getAttribute("msg");
@@ -76,7 +86,6 @@ public class MyAop {
             logger.info(Thread.currentThread().getName());
             testOracleService.asynJob();
         } catch (Throwable throwable) {
-        	throwable.printStackTrace();
             logger.error("MyAop @AfterReturning error:	" + throwable.getMessage());
         }
     }
@@ -104,6 +113,11 @@ public class MyAop {
         }
         return "MyAop类@Around通知的返回值";
     }
-
+	
+	//JoinPoint这个参数一定要出现在参数列表的第一位
+    @AfterThrowing(value = "point()",throwing = "exception")
+    public void logException(JoinPoint joinPoint,Exception exception) {
+    	logger.error("全类名为：" + joinPoint.getSignature().getDeclaringTypeName()+"的方法："+joinPoint.getSignature().getName() +"()发生异常...异常信息为：" + exception.getMessage());
+    }
 
 }

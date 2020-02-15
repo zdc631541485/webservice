@@ -2,10 +2,12 @@ package com.qdtz.SpringWebService.service.Impl;
 
 import javax.jws.WebService;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.qdtz.SpringWebService.mapper.master.TestOracleMapper;
 import com.qdtz.SpringWebService.mapper.slave.TestSlaveMapper;
 import com.qdtz.SpringWebService.service.TestOracleService;
@@ -21,7 +23,8 @@ import com.qdtz.SpringWebService.service.TestOracleService;
 @Component
 public class TestOracleServiceImpl implements TestOracleService {
     
-
+	final static Logger logger = Logger.getLogger(TestOracleServiceImpl.class);
+	
     @Autowired
     private TestOracleMapper testOracleMapper;
   
@@ -53,10 +56,11 @@ public class TestOracleServiceImpl implements TestOracleService {
         int t = 1/0;
         return rows;
     }
+    
     @Async
 	@Override
 	public void asynJob() {
-		System.out.println("异步的线程："+Thread.currentThread().getName());
+    	logger.info("异步的线--------------------------------------"+Thread.currentThread().getName());
 		
 	}
 

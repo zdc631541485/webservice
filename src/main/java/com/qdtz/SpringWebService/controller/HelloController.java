@@ -31,6 +31,7 @@ public class HelloController {
     @ResponseBody
     @GetMapping("/car")
     public String car(Car car, HttpServletRequest request){
+    	int i =1/0;
     	HttpSession session = request.getSession();
     	session.setAttribute("msg", "car session");
         return car.toString();
